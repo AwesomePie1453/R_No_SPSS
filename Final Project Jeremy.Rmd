@@ -24,24 +24,26 @@ This project is designed to look at those who bet parlays in a larger sample and
 
 ## Read in the data
 
-This is from our longitudinal study, wave 4, where the majority of these analyses will be conducted.
+This is from our longitudinal study, wave 4, where the majority of these analyses will be conducted. I am taking our massive dataset and just selecting the wave 4 variables.
 
 ```{r load in the data}
 library(haven)
 library(dplyr)
 library(tidyverse)
 library(Hmisc)
+library(ggplot2)
 Data <- read_sav("BGSU0007_merged_w5_OUTPUT copy.sav")
 Wave_4 <- as_tibble(Data) %>%
   select(caseid_w5, starts_with("W5_"))
 ```
 
-Now, let's look at our main variable, whether or not people endorsed betting parlays
+Alright, so we asked participants what types of sports bets they have made. The variable of interest here is a parlay, which is taking multiple bets and putting them together for a bigger payout. So let's see how many people endorsed betting parlays!
+
 
 ```{r frequencies}
 table(Wave_4$"W5_Q146_2")
 ```
-Okay, so in this case, 1 = endorsed, 2 = did not endorse. That is the case for the majority of my binary variables. 
+Okay, so in this case, 1 = endorsed, 2 = did not endorse. That is the case for the majority of my binary variables. So 206 people bet parlays in this sample. Not bad.
 
 Now, in this dataset I have a bunch of new variables looking at parlays specifically. I want to know what their frequencies are as well. 
 
@@ -106,20 +108,34 @@ Enjoy the massive table above. Let me write down some of the key parts here.
 
 206 people (51.89%) of the sample endorsed betting parlays. Why did they bet parlays? 83% did it to win money, 71.8% because it was fun, 38.8% to have action on multiple games, 47.6% for the potential of a high payout, 33% due to boosted odds tokens.
 
-As far as the odds they are typically betting, its fairly normal. I made these number brackets up arbitrarily for what I thought made sense. Let's look at a frequency distrubtion of it
+As far as the odds they are typically betting, its fairly normal. I made these number brackets up arbitrarily for what I thought made sense. Let's look at a frequency distribution of it
 
 ```{r typical bet}
-frequency_table<- dplyr::count(Wave_4, W5_Q190)
+dplyr::count(Wave_4, W5_Q190)
 ```
+```{r histo}
+Wave_4_Filtered <- filter(Wave_4, !is.na(W5_Q190))
+count_lay <- count(Wave_4_Filtered, W5_Q190)
+ggplot(count_lay, aes(x = factor(W5_Q190), y = n)) + geom_bar(stat = "identity", fill = "skyblue", color = "black")
+```
+I won't go into detail on what these mean, but typically people are betting from even money (+100)  to +1000 (10 to 1) parlays. 
 
+Next, I want to look at how much people are typically losing/making when betting parlays.
 
 
 ```{r typical outcome}
 dplyr::count(Wave_4, W5_Q191)
 ```
-The typical parlay outcome is pretty normal, asshown below.
+
+```{r}
+count_lay <- count(Wave_4_Filtered, W5_Q191)
+ggplot(count_lay, aes(x = factor(W5_Q191), y = n)) + geom_bar(stat = "identity", fill = "skyblue", color = "black")
+```
+
+So our sample is not claiming to win or lose a ton of money, but sit around average. More people are losing than winning (self-report) but nothing crazy. 
 
 
 Okay now that we know our variables, its time to do some T tests. Go to ttest.rmd to see it.
 
+ListOfVariables.Rmd has the names of any variables if you are interested. 
 

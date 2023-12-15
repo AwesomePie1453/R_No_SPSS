@@ -9,16 +9,23 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r load in the data}
+library(haven)
+library(dplyr)
+library(tidyverse)
+library(Hmisc)
+library(ggplot2)
+Data <- read_sav("BGSU0007_merged_w5_OUTPUT copy.sav")
+Wave_4 <- as_tibble(Data) %>%
+  select(caseid_w5, starts_with("W5_"))
+```
 ## T Tests
 
-Here is the first of my ttests. Very basic, do those who bet parlays differ on whether they live in a legal  gambling state or no.
+Welcome to my ttest section. I am going to run some basic ttests with my parlay variable to see what those bettors might vary on.
 
-```{r LegalState}
-t_test <- t.test(W5_Q73 ~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+# Basic
 
-t_test
-```
-It appears that those who bet parlays were more likely to have legal gambling. Makes sense.
+Okay, do those bet parlays see more betting advertisements?
 
 ```{r freqadv}
 t_test <- t.test(W5_Q70 ~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
@@ -26,21 +33,16 @@ t_test <- t.test(W5_Q70 ~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternativ
 t_test
 ```
 
-No difference in frequency of avertisements. That's dissapointing.
+No difference in frequency of advertisements. 
 
-```{r online}
-t_test <- t.test(W5_Q40_p~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
-
-t_test
-```
-No difference, interesting. Online gamlbers NOT more likely to bet parlays.(check these numbers)
+Let's look at frequency of sports betting.
 
 ```{r sportsfreq}
 t_test <- t.test(W5_GambFreq_c~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
 
 t_test
 ```
-these p valuesare weird, that seems significant to me. Parlay gamblers have higher frequency of betting sports - makes sense (1 to 6)
+Parlay bettors bet sports more. Good to know. (The 1 p-value threw me off but I guess it is just so small?)
 
 
 ```{r timing}
@@ -48,10 +50,11 @@ t_test <- t.test(W5_Q145~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternativ
 
 t_test
 ```
-again with p-value of 1, well this is timing. It makes sense, i might need to recode this one thoguh (or anova?)
+Again with p-value of 1, well this is timing. It makes sense, I might need to make this one an ANOVA.
 
+# Type of Sports Bets
 
-Type of sports bets (not with parlays). They should be connected to other bets, but lets see. Those who bet parlays, are they more likely to bet... moneylines?
+Other type of sports bets (not with parlays). They should be connected to other bets, but lets see. Those who bet parlays, are they more likely to bet... moneylines?
 
 ```{r moneylines}
 t_test <- t.test(W5_Q146_1~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
@@ -59,6 +62,7 @@ t_test <- t.test(W5_Q146_1~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternat
 t_test
 ```
 Nope. Spreads?
+
 ```{r spreads}
 t_test <- t.test(W5_Q146_3~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
 
@@ -95,7 +99,7 @@ t_test <- t.test(W5_Q146_7~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternat
 
 t_test
 ```
-Even futures. Everything but moneylines. That's super interesting
+Even futures. Everything but moneylines. That's super interesting.
 
 ###Sports
 
@@ -107,23 +111,18 @@ t_test <- t.test(W5_Q75_1~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternati
 t_test
 ```
 
-yup, feel like these will all be connected. might need a regression for these sports? Not running them all yet
+yup, feel like these will all be connected. might need a regression for these sports? Not running them all yet.
 
+# Substances
 
-Do people who bet parlays more liely to drink while betting?
+Do people who bet parlays more likely to drink while betting?
 
 ```{r alcohol}
 t_test <- t.test(W5_Q165_1~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
 
 t_test
 ```
-close but not quite
-
-```{r freqalcohol}
-t_test <- t.test(W5_Q159_a~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
-
-t_test
-```
+Close but not quite. Marijuana?
 
 ```{r marijuana}
 t_test <- t.test(W5_Q165_3~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
@@ -133,39 +132,27 @@ t_test
 
 marijuana was with parlays.. weird
 
-```{r alcohol}
+```{r cocaine}
 t_test <- t.test(W5_Q165_5~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
 
 t_test
 ```
-but not cocaine
+But not cocaine.
 
+# Knowledge
 
-```{r none}
-t_test <- t.test(W5_Q165_11~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+A large part of my research looks at the percieved knowledge that someone has in gambling on certain sports. Typically, I think breaking it by sport is more useful. However, for this one I do want to look at a potential mean variable.
 
-t_test
+```{r mutate}
+Wave_4$KnowledgeMean <- rowMeans(Wave_4[, c("W5_Q134_a", "W5_Q134_b", "W5_Q134_c", "W5_Q134_d", "W5_Q134_e", "W5_Q134_f", "W5_Q134_g", "W5_Q134_h", "W5_Q134_i", "W5_Q134_j", "W5_Q134_k")], na.rm = TRUE)
 ```
 
-no difference in none
-
-```{r percalc}
-t_test <- t.test(W5_Q161_grid_a~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
-
-t_test
-```
-
-nothing here
-
-Okay KNOWLEDGE here we go
-
+Oops, it hates my NAs. I'll figure that out later. I'm gonna choose the biggest American sports. Basketball, Baseball, Soccer, Football, Hockey. 
 ```{r knowlbasket}
 t_test <- t.test(W5_Q134_a~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
 
 t_test
 ```
-close hmmm
-
 ```{r knowlbase}
 t_test <- t.test(W5_Q134_b~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
 
@@ -189,6 +176,7 @@ t_test <- t.test(W5_Q134_e~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternat
 
 t_test
 ```
+Okay, none of them. I wonder if there is a correlation with tennis knowledgde, since that's a weird one.
 
 ```{r knowltennis}
 t_test <- t.test(W5_Q134_h~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
@@ -196,37 +184,33 @@ t_test <- t.test(W5_Q134_h~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternat
 t_test
 ```
 
-Tennis, interesting. But wait. Its lower??? Woah. I wont look at other sports yet
+Hmmmmm. Lower knowledge for those betting parlays. That's actually crazy. ts lower??? Woah. I wont look at other sports yet.
 
-let look at march amdness
-W5_Q126_multi_2
+For curiosity, what about those who bet March Madness? Feels like a parlay event. 
 
 ```{r kmarch madness}
 t_test <- t.test(W5_Q126_multi_2~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
 
 t_test
 ```
-Woah! Msarch madness bettors like parlays.
+Woah! March madness bettors like parlays.
 
-```{r Cross state lines}
-t_test <- t.test(W5_Q82~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+#Treatment
 
-t_test
-```
+Are parlay bettors more likely to seek treatment?
+
 ```{r seekingtereatment}
 t_test <- t.test(W5_Q92~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
 
 t_test
 ```
-
-```{r how many drinks}
-t_test <- t.test(W5_Q180~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
-
-t_test
-```
+No. Are they more concerned about their gambling?
 
 ```{r concern gambling}
 t_test <- t.test(W5_Q111_g~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
 
 t_test
 ```
+Not enough.
+
+Okay, this si enough for the T-tests. Let's wrap it up with some other analyses. I'll see you in OtherAnalysis.rmd

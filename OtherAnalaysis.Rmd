@@ -9,26 +9,93 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r load in the data}
+library(haven)
+library(dplyr)
+library(tidyverse)
+library(Hmisc)
+library(ggplot2)
+Data <- read_sav("BGSU0007_merged_w5_OUTPUT copy.sav")
+Wave_4 <- as_tibble(Data) %>%
+  select(caseid_w5, starts_with("W5_"))
+```
 ## R Markdown
 
 I would like to do way more than the ones below. But, I don't have a ton of time. So let me hit the most important ones.
 
-Regression with parlay and sports
+I talked about timing before, this is big. Inplay vs live.
 
-Regression with parlay and types of bets
+```{r}
+model <- aov(W5_Q146_2 ~ W5_Q145, data = Wave_4)
+summary(model)
+```
+Lets try Tukeys. I'm sure I can figure it out. 
+* narrator voice*
+He did not figure it out in time. 
+
+```{r sports}
+model <- lm(W5_Q146_2  ~ W5_Q75_1 + W5_Q75_2 + W5_Q75_3 + W5_Q75_4 + W5_Q75_5 + W5_Q75_6 + W5_Q75_7 + W5_Q75_8 + W5_Q75_9 + W5_Q75_10 + W5_Q75_11, data = Wave_4)
+summary(model)
+```
+Oh interesting. So 1, 2, 4, 9 which are basektball, baseball, football and motor sports. Motor sports??
+
+
+Now lets do type of bets
+
+```{r type}
+model <- lm(W5_Q146_2  ~ W5_Q146_1 + W5_Q146_3 + W5_Q146_4 + W5_Q146_5 + W5_Q146_6 + W5_Q146_7, data = Wave_4)
+summary(model)
+```
+Here we got totals, player props, and prop bets. More unique. 
+
+Now let's do substances 
+
+```{r substances}
+model <- lm(W5_Q146_2  ~ W5_Q165_1 + W5_Q165_2 + W5_Q165_3 + W5_Q165_4 + W5_Q165_5 + W5_Q165_6 + W5_Q165_7 + W5_Q165_8 + W5_Q165_9, data = Wave_4)
+summary(model)
+```
+
+Marijuana is the only significant with parlay, again. That's so weird. 
+
+Knowledge! Knowledge! 
+
+
+```{r knowledge}
+model <- lm(W5_Q146_2  ~ W5_Q134_a + W5_Q134_b + W5_Q134_c + W5_Q134_d + W5_Q134_e + W5_Q134_f + W5_Q134_g + W5_Q134_h + W5_Q134_i + W5_Q134_j + W5_Q134_k, data = Wave_4)
+summary(model)
+```
+I think i broke it. Ohhhh well. 
+
+
+```{r illicit behaviors}
+model <- lm(W5_Q146_2  ~ W5_Q185_1 + W5_Q185_2 + W5_Q185_3 + W5_Q185_4 + W5_Q185_5 + W5_Q185_6 + W5_Q185_7 + W5_Q185_8 + W5_Q185_9 + W5_Q185_10 + W5_Q185_11 + W5_Q185_12 + W5_Q185_13 + W5_Q185_14, data = Wave_4)
+summary(model)
+```
+Nothing, not too shocking 
+
+W5_Q52_1
+
+```{r wherebet}
+model <- lm(W5_Q146_2  ~ W5_Q52_1 + W5_Q52_2 + W5_Q52_3 + W5_Q52_4 + W5_Q52_5, data = Wave_4)
+summary(model)
+```
+Just 1 and 4, which are smartphone and... against friends?? 
+
+W5_Q126_multi_1
+
+```{r events}
+model <- lm(W5_Q146_2  ~ W5_Q126_multi_1 + W5_Q126_multi_2 + W5_Q126_multi_3 + W5_Q126_multi_4 + W5_Q126_multi_5 + W5_Q126_multi_6 + W5_Q126_multi_7 + W5_Q126_multi_8, data = Wave_4)
+summary(model)
+```
+3 and 8, MLB playoffs and College football playoffs. 
+
+
+# future directions 
 
 regression with substances
+regression with knowledge 
+satisfaction of life 
+Motives 
+stuff (pgsi, positive play'0 ) predicting the other pgsi questions, whether they win esp, but also typical odds, and reasons why. 
 
-Positive play regression
-
-knowledge sports regression?
-in play anova
-
-specific sports event
-sports betting platforms
-illicit behaviors
-
-MOTIVES
-Satisfaction of life
-
-stuff (pgsi, positive play'0 ) predicting the other pgsi questions, whether tehy win esp, but also typical odds, and reasons why. 
+clean it up 
