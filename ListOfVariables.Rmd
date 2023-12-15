@@ -1,0 +1,328 @@
+---
+title: "R variables"
+author: "AwesomePie1453"
+date: '2023-12-05'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## List of variable names found in the study.
+
+W5_Q73 Legality of sports betting in your state
+W5_Q70 Frequency of betting advertisements
+W5_Q40_p Types of gambling -- Gambled online (any sort of
+online game that you bet money with a chance of
+winning more money)
+W5_GambFreq_c Gambling how often -- Bet on live-action sports
+(any of the following: online, at a
+sports-betting kiosk, using a sports book, using
+an app, with a bookie, against friends, parlay
+cards)
+W5_Q145 Sports wagering timing
+W5_Q146_1 Types of sports bets - money-line wagers
+W5_Q146_2 Types of sports bets - parlay bets/cards
+W5_Q146_3 Types of sports bets - spread wagers
+W5_Q146_4 Types of sports bets - total wagers
+W5_Q146_5 Types of sports bets - player-props
+W5_Q146_6 Types of sports bets - prop bets
+W5_Q146_7 Types of sports bets - future bets
+-
+W5_Q189_1 Reasons for parlay bets - Win money
+W5_Q189_2 Reasons for parlay bets - Fun
+W5_Q189_3 Reasons for parlay bets - Action in multiple
+games
+W5_Q189_4 Reasons for parlay bets - Large payout
+W5_Q189_5 Reasons for parlay bets - Sites offer boosted
+odds
+W5_Q189_6 Reasons for parlay bets - Other
+W5_Q190 Typical parlay bet
+W5_Q191 Typical parlay outcome
+-
+W5_Q75_1 Sports bets - Basketball
+W5_Q75_2 Sports bets - Baseball
+W5_Q75_3 Sports bets - Soccer
+W5_Q75_4 Sports bets - Football
+W5_Q75_5 Sports bets - Hockey
+W5_Q75_6 Sports bets - Golf
+W5_Q75_7 Sports bets - E-sports
+W5_Q75_8 Sports bets - Tennis
+W5_Q75_9 Sports bets - Motor-Sports
+W5_Q75_10 Sports bets - Boxing
+W5_Q75_11 Sports bets - MMA
+W5_Q75_12 Sports bets - Other
+-
+W5_Q166 Sports bet on most often
+W5_Q167 Favorite sport to bet on
+W5_Q168 Most successful sport bet on
+-
+W5_Q165_1 Substances used during sports betting - Alcohol
+W5_Q165_2 Substances used during sports betting - Tobacco
+W5_Q165_3 Substances used during sports betting - Marijuana
+W5_Q165_4 Substances used during sports betting -
+Hallucinogens
+W5_Q165_5 Substances used during sports betting - Cocaine
+W5_Q165_6 Substances used during sports betting - Opioids
+W5_Q165_7 Substances used during sports betting -
+Methamphetamines
+W5_Q165_8 Substances used during sports betting - Other
+stimulant meds
+W5_Q165_9 Substances used during sports betting - Party
+drugs
+W5_Q165_11 Substances used during sports betting - None
+
+W5_Q134_a Knowledge of sports betted on -- Basketball
+W5_Q134_b Knowledge of sports betted on -- Baseball
+W5_Q134_c Knowledge of sports betted on -- Soccer
+W5_Q134_d Knowledge of sports betted on -- Football
+W5_Q134_e Knowledge of sports betted on -- Hockey
+W5_Q134_f Knowledge of sports betted on -- Golf
+W5_Q134_g Knowledge of sports betted on -- E-sports
+W5_Q134_h Knowledge of sports betted on -- Tennis
+W5_Q134_i Knowledge of sports betted on -- Motor-Sports
+(NASCAR; F1 Racing; Motocross)
+W5_Q134_j Knowledge of sports betted on -- Boxing
+W5_Q134_k Knowledge of sports betted on -- Mixed Martial
+Arts (MMA)
+W5_Q134_l Knowledge of sports betted on -- $W5_Q75_t
+
+W5_Q126_multi_1 Betting on specific sporting event - Womens world
+cup
+W5_Q126_multi_2 Betting on specific sporting event - March
+Madness
+W5_Q126_multi_3 Betting on specific sporting event - MLB Playoffs
+W5_Q126_multi_4 Betting on specific sporting event - US open
+W5_Q126_multi_5 Betting on specific sporting event - Stanley Cup
+W5_Q126_multi_6 Betting on specific sporting event - NBA playoffs
+W5_Q126_multi_7 Betting on specific sporting event - NFL
+Playoffs/Superbowl
+W5_Q126_multi_8 Betting on specific sporting event - College
+Football Playoffs
+W5_Q126_multi_9 Betting on specific sporting event - Other
+
+W5_Q52_1 Sports betting services or platforms - Smartphone
+betting applications
+W5_Q52_2 Sports betting services or platforms - Online
+sportsbooks
+W5_Q52_3 Sports betting services or platforms -
+Traditional sportsbook
+W5_Q52_4 Sports betting services or platforms - Betting
+against friends
+W5_Q52_5 Sports betting services or platforms - Gambling
+Kiosk
+W5_Q52_6 Sports betting services or platforms - Other
+W5_Q82 Cross state lines to bet on sports
+
+W5_Q41_a Consequences of gambling -- Have you bet more
+than you could really afford to lose?
+W5_Q41_b Consequences of gambling -- Still thinking about
+the last 12 months, have you needed to gamble
+with larger amounts of money to get the same
+feeling of excitement?
+W5_Q41_c Consequences of gambling -- When you gambled,
+have you gone back another day to try to win back
+the money you lost?
+W5_Q41_d Consequences of gambling -- Have you borrowed
+money or sold anything to get money to gamble?
+W5_Q41_e Consequences of gambling -- Have you felt that
+you might have a problem with gambling?
+W5_Q41_f Consequences of gambling -- Has gambling caused
+you any health problems, including stress or
+anxiety?
+W5_Q41_g Consequences of gambling -- Have people
+criticized your betting or told you that you had
+a gambling problem, regardless of whether or not
+you thought it was true?
+W5_Q41_h Consequences of gambling -- Has your gambling
+caused any financial problems for you or your
+household?
+W5_Q41_i Consequences of gambling -- Have you felt guilty
+about the way you gamble or what happens when you
+gamble?
+-
+W5_Q91 Out of control gambling behavior
+
+W5_Q92 Seeking treatment for gambling behavior
+W5_Q147_1 Specify treatment for gambling - Individual
+psychotherapy
+W5_Q147_2 Specify treatment for gambling - Group
+psychotherapy
+W5_Q147_3 Specify treatment for gambling - Gambler's
+Anonymous
+W5_Q147_4 Specify treatment for gambling - Other peer
+recovery group
+W5_Q147_5 Specify treatment for gambling - Other
+W5_Q93 Need treatment for gambling behavior
+W5_Q185_1 Illicit behaviors - Forgery
+W5_Q185_2 Illicit behaviors - Bad checks
+W5_Q185_3 Illicit behaviors - Embezzling
+W5_Q185_4 Illicit behaviors - Robbery
+W5_Q185_5 Illicit behaviors - Not paying child support
+W5_Q185_6 Illicit behaviors - DUI
+W5_Q185_7 Illicit behaviors - Tax evasion
+W5_Q185_8 Illicit behaviors - Buying drugs
+W5_Q185_9 Illicit behaviors - Selling drugs
+W5_Q185_10 Illicit behaviors - Assault or domestic violence
+W5_Q185_11 Illicit behaviors - Engaging in illegal sex work
+W5_Q185_12 Illicit behaviors - Soliciting illegal sex work
+W5_Q185_13 Illicit behaviors - Gambling crimes
+W5_Q185_14 Illicit behaviors - Violating parole/probation
+W5_Q185_15 Illicit behaviors - None
+
+W5_Q73_gambling_a Opinions on gambling -- It's my responsibility to
+spend only money that I can afford to lose.
+W5_Q73_gambling_b Opinions on gambling -- I should be aware of how
+much MONEY I spend when I gamble.
+W5_Q73_gambling_c Opinions on gambling -- I should only gamble when
+I have enough money to cover all my bills first.
+W5_Q73_gambling_d Opinions on gambling -- I should be able to walk
+away from gambling at any time.
+W5_Q73_gambling_e Opinions on gambling -- If I gamble more often,
+it will help me to win more than I lose.
+W5_Q73_gambling_f Opinions on gambling -- My chances of winning get
+better after I have lost.
+W5_Q73_gambling_g Opinions on gambling -- Gambling is a NOT good
+way to make money.
+W5_Q74_gambling_a Gambling behavior over last six months -- I
+considered the amount of TIME I was willing to
+spend BEFORE I gambled.
+W5_Q74_gambling_b Gambling behavior over last six months -- I
+considered the amount of MONEY I was willing to
+lose BEFORE I gambled.
+W5_Q74_gambling_c Gambling behavior over last six months -- I only
+spent TIME gambling that I could afford to spend.
+W5_Q74_gambling_d Gambling behavior over last six months -- I only
+gambled with MONEY that I could afford to lose.
+W5_Q74_gambling_e Gambling behavior over last six months -- I was
+honest with my family and/or friends about the
+amount of TIME I spent gambling.
+W5_Q74_gambling_f Gambling behavior over last six months -- I was
+honest with my family and/or friends about the
+amount of MONEY I spent gambling.
+W5_Q74_gambling_g Gambling behavior over last six months -- I felt
+in control of my gambling behavior.
+-
+
+-
+W5_Q72_gambling_a Reasons for gambling -- because it's exciting
+W5_Q72_gambling_b Reasons for gambling -- because you like the
+feeling
+W5_Q72_gambling_c Reasons for gambling -- because it makes you feel
+good
+W5_Q72_gambling_d Reasons for gambling -- because it's fun
+W5_Q72_gambling_e Reasons for gambling -- because it makes a social
+gathering more enjoyable
+W5_Q72_gambling_f Reasons for gambling -- to be sociable
+W5_Q72_gambling_g Reasons for gambling -- because it's what most of
+your friends do when you get together
+W5_Q72_gambling_h Reasons for gambling -- because it's something
+you do on special occasions
+W5_Q72_gambling_i Reasons for gambling -- to forget your worries
+W5_Q72_gambling_j Reasons for gambling -- because it helps when you
+are feeling nervous or depressed
+W5_Q72_gambling_k Reasons for gambling -- to cheer you up when
+you're in a bad mood
+W5_Q72_gambling_l Reasons for gambling -- because you feel more
+self-confident or sure of yourself
+W5_Q72_gambling_m Reasons for gambling -- because you enjoy
+thinking about what you would do if you won a
+jackpot
+W5_Q72_gambling_n Reasons for gambling -- because winning would
+change your lifestyle
+W5_Q72_gambling_o Reasons for gambling -- to win money
+W5_Q72_gambling_p Reasons for gambling -- to earn money
+W5_Q98_a Agree/Disagree - winning at gambling -- Gambling
+makes me happier.
+W5_Q98_b Agree/Disagree - winning at gambling -- I can’t
+function without gambling.
+W5_Q98_c Agree/Disagree - winning at gambling -- Praying
+helps me win.
+W5_Q98_d Agree/Disagree - winning at gambling -- Losses
+when gambling, are bound to be followed by a
+series of wins.
+W5_Q98_e Agree/Disagree - winning at gambling -- Relating
+my winnings to my skill and ability makes me
+continue gambling.
+W5_Q98_f Agree/Disagree - winning at gambling -- Gambling
+makes things seem better.
+W5_Q98_g Agree/Disagree - winning at gambling -- It is
+difficult to stop gambling as I am so out of
+control.
+W5_Q98_h Agree/Disagree - winning at gambling -- Specific
+numbers and colors can help increase my chances
+of winning.
+W5_Q98_i Agree/Disagree - winning at gambling -- A series
+of losses will provide me with a learning
+experience that will help me win later.
+W5_Q98_j Agree/Disagree - winning at gambling -- Relating
+my losses to bad luck and bad circumstances makes
+me continue gambling.
+W5_Q98_k Agree/Disagree - winning at gambling -- Gambling
+makes the future brighter.
+W5_Q98_l Agree/Disagree - winning at gambling -- My desire
+to gamble is so overpowering.
+W5_Q98_m Agree/Disagree - winning at gambling -- I collect
+specific objects that help increase my chances of
+winning.
+W5_Q98_n Agree/Disagree - winning at gambling -- When I
+have a win once, I will definitely win again.
+W5_Q98_o Agree/Disagree - winning at gambling -- Relating
+my losses to probability makes me continue
+gambling.
+W5_Q98_p Agree/Disagree - winning at gambling -- Having a
+gamble helps reduce tension and stress.
+W5_Q98_q Agree/Disagree - winning at gambling -- I’m not
+strong enough to stop gambling.
+W5_Q98_r Agree/Disagree - winning at gambling -- I have
+specific rituals and behaviors that increase my
+chances of winning.
+W5_Q98_s Agree/Disagree - winning at gambling -- There are
+times that I feel lucky and thus, gamble those
+times only.
+W5_Q98_t Agree/Disagree - winning at gambling --
+Remembering how much money I won last time makes
+me continue gambling.
+W5_Q98_u Agree/Disagree - winning at gambling -- I will
+never be able to stop gambling.
+W5_Q98_v Agree/Disagree - winning at gambling -- I have
+some control over predicting my gambling wins.
+W5_Q98_w Agree/Disagree - winning at gambling -- If I keep
+changing my numbers, I have less chances of
+winning than if I keep the same numbers every
+time.
+W5_Q146_satisfaction_c Satisfaction with aspects of your life -- Your
+life as a whole:
+W5_Q142_satisfaction Comparing satisfaction with life now to 6 months
+ago
+W5_Q102_f Morals -- I believe that gambling is morally
+wrong.
+W5_Q108_g Urge to use substances -- Gambling in any form
+W5_Q109_g Problems due to substance use -- Gambling in any
+form
+W5_Q110_g Failing to meet responsibilities due to substance
+use -- Gambling in any form
+W5_Q111_g Concern about your substance use -- Gambling in
+any form
+birthyr Birth Year
+gender4 Gender
+
+
+
+
+
+things to do
+
+Graph of the frequencies 
+timing
+regressions, type of betting, sports
+
+average knowledge variable and look at it
+Posiive play regression
+make positive play stuff
+positive play t tests?
+make pgsi
+
+typical wtih gender, age
+things on other page

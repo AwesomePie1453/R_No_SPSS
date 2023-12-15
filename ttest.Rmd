@@ -1,0 +1,232 @@
+---
+title: "Ttest"
+author: "AwesomePie1453"
+date: '2023-12-08'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## T Tests
+
+Here is the first of my ttests. Very basic, do those who bet parlays differ on whether they live in a legal  gambling state or no.
+
+```{r LegalState}
+t_test <- t.test(W5_Q73 ~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+It appears that those who bet parlays were more likely to have legal gambling. Makes sense.
+
+```{r freqadv}
+t_test <- t.test(W5_Q70 ~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+No difference in frequency of avertisements. That's dissapointing.
+
+```{r online}
+t_test <- t.test(W5_Q40_p~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+No difference, interesting. Online gamlbers NOT more likely to bet parlays.(check these numbers)
+
+```{r sportsfreq}
+t_test <- t.test(W5_GambFreq_c~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+these p valuesare weird, that seems significant to me. Parlay gamblers have higher frequency of betting sports - makes sense (1 to 6)
+
+
+```{r timing}
+t_test <- t.test(W5_Q145~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+again with p-value of 1, well this is timing. It makes sense, i might need to recode this one thoguh (or anova?)
+
+
+Type of sports bets (not with parlays). They should be connected to other bets, but lets see. Those who bet parlays, are they more likely to bet... moneylines?
+
+```{r moneylines}
+t_test <- t.test(W5_Q146_1~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+Nope. Spreads?
+```{r spreads}
+t_test <- t.test(W5_Q146_3~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+Oh yeah. Totals?
+
+```{r totals}
+t_test <- t.test(W5_Q146_4~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+
+Yessir. Player props?
+
+```{r player props}
+t_test <- t.test(W5_Q146_5~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+For sure. Player props?
+
+```{r player prop}
+t_test <- t.test(W5_Q146_6~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+yup, not shocking now. Fianlly, futures?
+
+```{r Futures}
+t_test <- t.test(W5_Q146_7~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+Even futures. Everything but moneylines. That's super interesting
+
+###Sports
+
+Now we are gonna look at sports! Start with basketball
+
+```{r basketball}
+t_test <- t.test(W5_Q75_1~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+yup, feel like these will all be connected. might need a regression for these sports? Not running them all yet
+
+
+Do people who bet parlays more liely to drink while betting?
+
+```{r alcohol}
+t_test <- t.test(W5_Q165_1~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+close but not quite
+
+```{r freqalcohol}
+t_test <- t.test(W5_Q159_a~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+```{r marijuana}
+t_test <- t.test(W5_Q165_3~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+marijuana was with parlays.. weird
+
+```{r alcohol}
+t_test <- t.test(W5_Q165_5~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+but not cocaine
+
+
+```{r none}
+t_test <- t.test(W5_Q165_11~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+no difference in none
+
+```{r percalc}
+t_test <- t.test(W5_Q161_grid_a~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+nothing here
+
+Okay KNOWLEDGE here we go
+
+```{r knowlbasket}
+t_test <- t.test(W5_Q134_a~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+close hmmm
+
+```{r knowlbase}
+t_test <- t.test(W5_Q134_b~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+```{r knowlsoccer}
+t_test <- t.test(W5_Q134_c~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+```{r knowlfoot}
+t_test <- t.test(W5_Q134_d~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+```{r knowlhockey}
+t_test <- t.test(W5_Q134_e~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+```{r knowltennis}
+t_test <- t.test(W5_Q134_h~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+Tennis, interesting. But wait. Its lower??? Woah. I wont look at other sports yet
+
+let look at march amdness
+W5_Q126_multi_2
+
+```{r kmarch madness}
+t_test <- t.test(W5_Q126_multi_2~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+Woah! Msarch madness bettors like parlays.
+
+```{r Cross state lines}
+t_test <- t.test(W5_Q82~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+```{r seekingtereatment}
+t_test <- t.test(W5_Q92~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+```{r how many drinks}
+t_test <- t.test(W5_Q180~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```
+
+```{r concern gambling}
+t_test <- t.test(W5_Q111_g~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
+
+t_test
+```

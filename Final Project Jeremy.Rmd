@@ -1,0 +1,125 @@
+---
+title: "Final Project"
+author: "AwesomePie1453"
+date: '2023-11-13'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## It's the Final Project
+
+# duh nuh nuh, duh duh duh duh duh, duh duh duh, duh duh duh duh duh duhuhh
+
+I hope you enjoy my rendition of the Final Countdown up above. Go Europe, am I right?
+
+Alright, so this project will be me expanding my horizons in R Markdown using statistics, which I previously haven't done in R. I am attempting to make a project through R and knit it through github so you can just access it via the link. There will be multiple files here to access.
+
+
+### Parlays
+
+This project is designed to look at those who bet parlays in a larger sample and see what sets them apart. This is the exploratory analyses for my larger paper to be written this winter. I was not able to finish all the analyses due to time, but it gives me a good starting point, so I appreciate it! 
+
+## Read in the data
+
+This is from our longitudinal study, wave 4, where the majority of these analyses will be conducted.
+
+```{r load in the data}
+library(haven)
+library(dplyr)
+library(tidyverse)
+library(Hmisc)
+Data <- read_sav("BGSU0007_merged_w5_OUTPUT copy.sav")
+Wave_4 <- as_tibble(Data) %>%
+  select(caseid_w5, starts_with("W5_"))
+```
+
+Now, let's look at our main variable, whether or not people endorsed betting parlays
+
+```{r frequencies}
+table(Wave_4$"W5_Q146_2")
+```
+Okay, so in this case, 1 = endorsed, 2 = did not endorse. That is the case for the majority of my binary variables. 
+
+Now, in this dataset I have a bunch of new variables looking at parlays specifically. I want to know what their frequencies are as well. 
+
+```{r new parlay question}
+Wave_4 %>%
+  summarise(ParlayYes=sum(W5_Q146_2 ==1, na.rm=TRUE),
+           ParlayNo=sum(W5_Q146_2 ==2, na.rm=TRUE),
+           N = ParlayYes + ParlayNo,
+           Parlay_Percent = ParlayYes / N,
+           WinMoney = sum(W5_Q189_1 ==1, na.rm=TRUE),
+           WinMoneyNo=sum(W5_Q189_1 ==2, na.rm=TRUE),
+           WinMoney_Percent = WinMoney / ParlayYes,
+          Fun = sum(W5_Q189_2 ==1, na.rm=TRUE),
+           FunNo=sum(W5_Q189_2 ==2, na.rm=TRUE),
+           Fun_Percent = Fun / ParlayYes,
+          Action = sum(W5_Q189_3 ==1, na.rm=TRUE),
+           ActionNo=sum(W5_Q189_3 ==2, na.rm=TRUE),
+           Action_Percent = Action / ParlayYes,
+          Payout = sum(W5_Q189_4 ==1, na.rm=TRUE),
+           PayoutNo=sum(W5_Q189_4 ==2, na.rm=TRUE),
+           Payout_Percent = Payout / ParlayYes,
+          Boosted = sum(W5_Q189_5 ==1, na.rm=TRUE),
+           BoostedNo=sum(W5_Q189_5 ==2, na.rm=TRUE),
+           Boosted_Percent = Boosted / ParlayYes,
+          Other = sum(W5_Q189_6 ==1, na.rm=TRUE),
+           OtherNo=sum(W5_Q189_6 ==2, na.rm=TRUE),
+           Other_Percent = Other / ParlayYes,
+          Neg200 = sum(W5_Q190 ==1, na.rm=TRUE),
+          Neg200_Percent = Neg200 / ParlayYes,
+          Even_200 = sum(W5_Q190 ==2, na.rm=TRUE),
+          Even_200_Percent = Even_200 / ParlayYes,
+          F100_200 = sum(W5_Q190 ==3, na.rm=TRUE),
+          F100_200_Percent = F100_200 / ParlayYes,
+          F200_500 = sum(W5_Q190 ==4, na.rm=TRUE),
+          F200_500_Percent = F200_500 / ParlayYes,
+          F500_1000 = sum(W5_Q190 ==5, na.rm=TRUE),
+          F500_1000_Percent = F500_1000 / ParlayYes,
+          F1K_2K = sum(W5_Q190 ==6, na.rm=TRUE),
+          F1K_2K_Percent = F1K_2K / ParlayYes,
+          F2K_5K = sum(W5_Q190 ==7, na.rm=TRUE),
+          F2K_5K_Percent = F2K_5K / ParlayYes,
+          F5K_10K = sum(W5_Q190 ==8, na.rm=TRUE),
+          F5K_10K_Percent = F5K_10K / ParlayYes,
+          F10K = sum(W5_Q190 ==9, na.rm=TRUE),
+          F10K_Percent = F10K / ParlayYes,
+          FOther = sum(W5_Q190 ==10, na.rm=TRUE),
+          FOther_Percent = FOther / ParlayYes,
+          LoseLot = sum(W5_Q191 ==1, na.rm=TRUE),
+          LoseLot_Percent = LoseLot / ParlayYes,
+          LoseLittle = sum(W5_Q191 ==2, na.rm=TRUE),
+          LoseLittle_Percent = LoseLittle / ParlayYes,
+          BreakEven = sum(W5_Q191 ==3, na.rm=TRUE),
+          BreakEven_Percent = BreakEven / ParlayYes,
+          WinSome = sum(W5_Q191 ==4, na.rm=TRUE),
+          WinSome_Percent = WinSome / ParlayYes,
+          WinLot = sum(W5_Q191 ==5, na.rm=TRUE),
+          WinLot_Percent = WinLot / ParlayYes
+          )
+```
+
+Enjoy the massive table above. Let me write down some of the key parts here.
+
+206 people (51.89%) of the sample endorsed betting parlays. Why did they bet parlays? 83% did it to win money, 71.8% because it was fun, 38.8% to have action on multiple games, 47.6% for the potential of a high payout, 33% due to boosted odds tokens.
+
+As far as the odds they are typically betting, its fairly normal. I made these number brackets up arbitrarily for what I thought made sense. Let's look at a frequency distrubtion of it
+
+```{r typical bet}
+frequency_table<- dplyr::count(Wave_4, W5_Q190)
+```
+
+
+
+```{r typical outcome}
+dplyr::count(Wave_4, W5_Q191)
+```
+The typical parlay outcome is pretty normal, asshown below.
+
+
+Okay now that we know our variables, its time to do some T tests. Go to ttest.rmd to see it.
+
+

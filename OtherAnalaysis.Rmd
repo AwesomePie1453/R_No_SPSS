@@ -1,0 +1,34 @@
+---
+title: "Other analyses"
+author: "AwesomePie1453"
+date: '2023-12-14'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+I would like to do way more than the ones below. But, I don't have a ton of time. So let me hit the most important ones.
+
+Regression with parlay and sports
+
+Regression with parlay and types of bets
+
+regression with substances
+
+Positive play regression
+
+knowledge sports regression?
+in play anova
+
+specific sports event
+sports betting platforms
+illicit behaviors
+
+MOTIVES
+Satisfaction of life
+
+stuff (pgsi, positive play'0 ) predicting the other pgsi questions, whether tehy win esp, but also typical odds, and reasons why. 
