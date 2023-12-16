@@ -25,7 +25,7 @@ I would like to do way more than the ones below. But, I don't have a ton of time
 
 I talked about timing before, this is big. Inplay vs live.
 
-```{r}
+```{r anova}
 model <- aov(W5_Q146_2 ~ W5_Q145, data = Wave_4)
 summary(model)
 ```
@@ -73,7 +73,6 @@ summary(model)
 ```
 Nothing, not too shocking 
 
-W5_Q52_1
 
 ```{r wherebet}
 model <- lm(W5_Q146_2  ~ W5_Q52_1 + W5_Q52_2 + W5_Q52_3 + W5_Q52_4 + W5_Q52_5, data = Wave_4)
@@ -81,7 +80,6 @@ summary(model)
 ```
 Just 1 and 4, which are smartphone and... against friends?? 
 
-W5_Q126_multi_1
 
 ```{r events}
 model <- lm(W5_Q146_2  ~ W5_Q126_multi_1 + W5_Q126_multi_2 + W5_Q126_multi_3 + W5_Q126_multi_4 + W5_Q126_multi_5 + W5_Q126_multi_6 + W5_Q126_multi_7 + W5_Q126_multi_8, data = Wave_4)
@@ -90,12 +88,11 @@ summary(model)
 3 and 8, MLB playoffs and College football playoffs. 
 
 
-# future directions 
+# Future Directions 
 
-regression with substances
 regression with knowledge 
 satisfaction of life 
 Motives 
-stuff (pgsi, positive play'0 ) predicting the other pgsi questions, whether they win esp, but also typical odds, and reasons why. 
-
-clean it up 
+PGSI
+Positive Play
+Variables such as PGSI and Positive Play predicting the other pgsi questions, whether they win esp, but also typical odds, and reasons why. 

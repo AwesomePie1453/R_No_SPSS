@@ -101,7 +101,7 @@ t_test
 ```
 Even futures. Everything but moneylines. That's super interesting.
 
-###Sports
+### Sports
 
 Now we are gonna look at sports! Start with basketball
 
@@ -113,7 +113,7 @@ t_test
 
 yup, feel like these will all be connected. might need a regression for these sports? Not running them all yet.
 
-# Substances
+### Substances
 
 Do people who bet parlays more likely to drink while betting?
 
@@ -130,7 +130,7 @@ t_test <- t.test(W5_Q165_3~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternat
 t_test
 ```
 
-marijuana was with parlays.. weird
+Marijuana was with parlays.. weird
 
 ```{r cocaine}
 t_test <- t.test(W5_Q165_5~ W5_Q146_2, var.equal=FALSE, paired = FALSE, alternative="less", Wave_4)
@@ -139,7 +139,7 @@ t_test
 ```
 But not cocaine.
 
-# Knowledge
+### Knowledge
 
 A large part of my research looks at the percieved knowledge that someone has in gambling on certain sports. Typically, I think breaking it by sport is more useful. However, for this one I do want to look at a potential mean variable.
 
@@ -186,6 +186,8 @@ t_test
 
 Hmmmmm. Lower knowledge for those betting parlays. That's actually crazy. ts lower??? Woah. I wont look at other sports yet.
 
+### Other
+
 For curiosity, what about those who bet March Madness? Feels like a parlay event. 
 
 ```{r kmarch madness}
@@ -213,4 +215,4 @@ t_test
 ```
 Not enough.
 
-Okay, this si enough for the T-tests. Let's wrap it up with some other analyses. I'll see you in OtherAnalysis.rmd
+Okay, this is enough for the T-tests. Let's wrap it up with some other analyses. I'll see you in OtherAnalysis.rmd

@@ -9,20 +9,20 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## It's the Final Project
+# It's the Final Project
 
-# duh nuh nuh, duh duh duh duh duh, duh duh duh, duh duh duh duh duh duhuhh
+### duh nuh nuh, duh duh duh duh duh, duh duh duh, duh duh duh duh duh duhuhh
 
 I hope you enjoy my rendition of the Final Countdown up above. Go Europe, am I right?
 
 Alright, so this project will be me expanding my horizons in R Markdown using statistics, which I previously haven't done in R. I am attempting to make a project through R and knit it through github so you can just access it via the link. There will be multiple files here to access.
 
 
-### Parlays
+## Parlays
 
 This project is designed to look at those who bet parlays in a larger sample and see what sets them apart. This is the exploratory analyses for my larger paper to be written this winter. I was not able to finish all the analyses due to time, but it gives me a good starting point, so I appreciate it! 
 
-## Read in the data
+### Read in the data
 
 This is from our longitudinal study, wave 4, where the majority of these analyses will be conducted. I am taking our massive dataset and just selecting the wave 4 variables.
 
@@ -127,7 +127,7 @@ Next, I want to look at how much people are typically losing/making when betting
 dplyr::count(Wave_4, W5_Q191)
 ```
 
-```{r}
+```{r table2}
 count_lay <- count(Wave_4_Filtered, W5_Q191)
 ggplot(count_lay, aes(x = factor(W5_Q191), y = n)) + geom_bar(stat = "identity", fill = "skyblue", color = "black")
 ```
